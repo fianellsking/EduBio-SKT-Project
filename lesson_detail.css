@@ -1,7 +1,7 @@
 /* General body and container styles are mostly handled by Tailwind in HTML */
 
 body {
-    background: linear-gradient(to bottom right, #ECFDF5, #D1FAE5); /* Light green to slightly darker green */
+    background: linear-gradient(to bottom right, #04ca6e, #00ff00); /* Light green to slightly darker green */
 }
 
 .container {
@@ -118,8 +118,8 @@ body {
 
 /* Kingdom Cards Styling - Adjusted for Forest/Animal Theme */
 .kingdom-card {
-    background-color: #fffbeb; /* Lightest orange/yellow (warm earth tone) */
-    border: 1px solid #fcd34d; /* Yellow border */
+    background-color: #edffeb; /* Lightest orange/yellow (warm earth tone) */
+    border: 1px solid #2fff00; /* Yellow border */
     border-radius: 10px;
     padding: 20px;
     text-align: center;
