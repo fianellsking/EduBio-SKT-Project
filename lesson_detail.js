@@ -47,7 +47,7 @@ let currentUserProfile = {}; // Store user profile data for sending to Sheets
 
 // ** NEW: Google Apps Script Web App URL **
 // <<--- เปลี่ยน URL นี้ด้วย Web App URL ที่คุณคัดลอกมาจากการ Deploy Google Apps Script
-const GOOGLE_APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby3yHKre1_e5YdHLVDx7qvLecVZf7t2mN9UeCTMFTPUbgs5HNd4A69nW1MrFE3QzEkW/exec'; 
+const GOOGLE_APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbymhqfn_R_bpWKRL2ClDKZofpLYJ77p-dBPYYFiwxKY5Ga9eMpkdqmOEQSOPEaT-PFV/exec'; 
 
 // --- Lesson Data (ตัวอย่างข้อมูลบทเรียน) ---
 // ทำให้ lessonsData เป็น global เพื่อให้เข้าถึงได้จาก script ด้านนอก (สำหรับ chat_module)
@@ -78,8 +78,8 @@ window.lessonsData = {
         ],
         content: {
             introductionText: `
-                <p>หลังจากทำแบบทดสอบก่อนเรียนแล้ว เรามาเจาะลึกการจำแนกสิ่งมีชีวิตออกเป็น 5 อาณาจักรหลักกัน. ซึ่งแต่ละอาณาจักรมีลักษณะเฉพาะที่น่าสนใจ!</p>
-                <p>โปรดเลือกอาณาจักรที่ต้องการเรียนรู้เพิ่มเติม:</p>
+                <p>หลังจากทำแบบทดสอบก่อนเรียนแล้ว เรามาลองศึกษาการจำแนกสิ่งมีชีวิตกันและอาณาจักรของสิ่งมีชีวิตทั้ง5กัน!</p>
+                <p></p>
                 <h3 class="text-xl font-semibold mt-4 mb-2 text-gray-700">วิดีโอภาพรวมการจำแนกสิ่งมีชีวิต</h3>
             `,
             // เพิ่มลิงก์วิดีโอภาพรวมการจำแนกสิ่งมีชีวิตที่นี่
@@ -1037,11 +1037,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-
-    if (backFromTaxonomyIntroToPreTestBtn) {
-        backFromTaxonomyIntroToPreTestBtn.addEventListener('click', () => {
+    if (backToPreTestFromTaxonomyIntroBtn) {
+        backToPreTestFromTaxonomyIntroBtn.addEventListener('click', () => {
             showSection('preTestSection');
-            // Render pre-test again with answers and explanations visible, and inputs disabled
             renderQuestions(window.currentLessonData.preTest, 'preTestQuestions', 'pre', true, userPreTestAnswers);
             if (submitPreTestBtn) submitPreTestBtn.disabled = true;
             if (continueToContentBtn) continueToContentBtn.classList.remove('hidden');
@@ -1049,13 +1047,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (backFromKingdomSelectionToTaxonomyIntroBtn) {
-        backFromKingdomSelectionToTaxonomyIntroBtn.addEventListener('click', () => {
-            showSection('taxonomyIntroSection');
-            document.getElementById('generalIntroTitle').textContent = "ภาพรวมการจำแนกสิ่งมีชีวิต";
-            document.getElementById('generalIntroContent').innerHTML = window.currentLessonData.content.introductionText;
-            renderGeneralTaxonomyVideos();
-        });
-    }
+    console.log("ปุ่มย้อนกลับจากอาณาจักร → taxonomy intro ถูกพบ");
+    backFromKingdomSelectionToTaxonomyIntroBtn.addEventListener('click', () => {
+        console.log("ผู้ใช้กดปุ่มย้อนกลับไป taxonomy intro");
+        showSection('taxonomyIntroSection');
+        document.getElementById('generalIntroTitle').textContent = "ภาพรวมการจำแนกสิ่งมีชีวิต";
+        document.getElementById('generalIntroContent').innerHTML = window.currentLessonData.content.introductionText;
+        renderGeneralTaxonomyVideos();
+    });
+} else {
+    console.warn("ไม่พบปุ่ม backFromKingdomSelectionToTaxonomyIntroBtn ใน DOM");
+}
 
 
     if (backToKingdomSelectionBtn) {
