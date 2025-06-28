@@ -1,19 +1,19 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { 
-    getAuth, 
-    signInAnonymously, 
-    signInWithCustomToken, 
-    onAuthStateChanged, 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    GoogleAuthProvider, 
-    signInWithPopup 
+import {
+    getAuth,
+    signInAnonymously,
+    signInWithCustomToken,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-import { 
-    getFirestore, 
-    doc, 
-    setDoc, 
-    getDoc 
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // Global variables provided by the Canvas environment
@@ -42,7 +42,7 @@ console.log("Firebase config loaded:", firebaseConfig);
 if (!firebaseConfig || !firebaseConfig.apiKey) {
     console.error("Firebase config is missing or invalid. Please ensure it's correctly set or provided by the environment.");
     showMessageModal("ข้อผิดพลาดในการตั้งค่า Firebase", "ไม่สามารถเชื่อมต่อกับ Firebase ได้ กรุณาตรวจสอบว่าการตั้งค่า Firebase ของคุณถูกต้อง (API Key หรืออื่นๆ).");
-    throw new Error("Firebase configuration is invalid."); 
+    throw new Error("Firebase configuration is invalid.");
 }
 
 // Initialize Firebase
@@ -106,14 +106,14 @@ onAuthStateChanged(auth, async (user) => {
             // Even if Firestore fails, we might still want to redirect the user
         }
 
-        // Redirect directly to lesson_detail.html with taxonomy lesson ID
-        // Check if the current page is NOT lesson_detail.html with taxonomy ID to prevent infinite loops
-        const targetUrl = "lesson_detail.html?id=taxonomy";
+        // Redirect directly to home.html
+        // Check if the current page is NOT home.html to prevent infinite loops
+        const targetUrl = "home.html"; // Changed target to home.html
         if (!window.location.href.includes(targetUrl)) {
             console.log(`onAuthStateChanged: Redirecting to ${targetUrl}...`);
             window.location.href = targetUrl;
         } else {
-            console.log("onAuthStateChanged: Already on target lesson page. No immediate redirection from here.");
+            console.log("onAuthStateChanged: Already on target home page. No immediate redirection from here.");
         }
 
     } else {
@@ -217,7 +217,7 @@ document.getElementById("signupSubmit")?.addEventListener("click", async () => {
         console.log("User created successfully. Displaying success message and preparing for redirect.");
         // Redirect after showing message and user closes modal
         showMessageModal("สมัครสมาชิกสำเร็จ", "คุณได้สมัครสมาชิกเรียบร้อยแล้ว!", () => {
-            window.location.href = "lesson_detail.html?id=taxonomy"; // Redirect directly to taxonomy lesson
+            window.location.href = "home.html"; // Changed redirection to home.html
         });
         if (signupModal) signupModal.style.display = "none"; // Ensure modal is handled
     } catch (error) {
@@ -256,7 +256,7 @@ document.getElementById("loginSubmit")?.addEventListener("click", async () => {
         console.log("Signed in successfully. Displaying success message and preparing for redirect.");
         // Redirect after showing message and user closes modal
         showMessageModal("เข้าสู่ระบบสำเร็จ", "คุณเข้าสู่ระบบเรียบร้อยแล้ว!", () => {
-            window.location.href = "lesson_detail.html?id=taxonomy"; // Redirect directly to taxonomy lesson
+            window.location.href = "home.html"; // Changed redirection to home.html
         });
         if (loginModal) loginModal.style.display = "none"; // Ensure modal is handled
     } catch (error) {
@@ -289,7 +289,7 @@ document.getElementById("googleLogin")?.addEventListener("click", async () => {
         console.log("Signed in with Google successfully. Displaying success message and preparing for redirect.");
         // Redirect after showing message and user closes modal
         showMessageModal("เข้าสู่ระบบสำเร็จ", "คุณเข้าสู่ระบบด้วย Google เรียบร้อยแล้ว!", () => {
-            window.location.href = "lesson_detail.html?id=taxonomy"; // Redirect directly to taxonomy lesson
+            window.location.href = "home.html"; // Changed redirection to home.html
         });
         if (loginModal) loginModal.style.display = "none"; // Ensure modal is handled
     } catch (error) {
