@@ -42,7 +42,7 @@ let currentUser = null; // Store current user object
 
 // ** NEW: Google Apps Script Web App URL **
 // URL ของ Web App ที่คุณคัดลอกมาจากการ Deploy Google Apps Script
-const GOOGLE_APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby3yHKre1_e5YdHLVDx7qvLecVZf7t2mN9UeCTMFTPUbgs5HNd4A69nW1MrFE3QzEkW/exec'; 
+const GOOGLE_APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbymhqfn_R_bpWKRL2ClDKZofpLYJ77p-dBPYYFiwxKY5Ga9eMpkdqmOEQSOPEaT-PFV/exec'; 
 
 // Function to show custom message box
 function showMessageBox(title, message, callback = null) {
@@ -253,7 +253,7 @@ if (saveProfileBtn) {
                 console.log("โปรไฟล์ผู้ใช้ Firestore ถูกอัปเดต/สร้างด้วยข้อมูลใหม่");
 
                 // 3. ** NEW: Send profile data to Google Apps Script (Single Sheet) **
-                if (GOOGLE_APPS_SCRIPT_WEB_APP_URL && GOOGLE_APPS_SCRIPT_WEB_APP_URL !== 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+                if (GOOGLE_APPS_SCRIPT_WEB_APP_URL === 'https://script.google.com/macros/s/AKfycbymhqfn_R_bpWKRL2ClDKZofpLYJ77p-dBPYYFiwxKY5Ga9eMpkdqmOEQSOPEaT-PFV/exec') {
                     try {
                         const dataToSend = {
                             type: 'profile', // Indicate data type
